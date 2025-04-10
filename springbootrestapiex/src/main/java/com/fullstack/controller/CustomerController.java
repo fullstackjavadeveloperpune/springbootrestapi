@@ -43,5 +43,12 @@ public class CustomerController {
         return ResponseEntity.ok(customerList.stream().sorted(Comparator.comparingDouble(Customer::getCustAccountBalance).reversed()).toList());
     }
 
+    @GetMapping("/eligiblecustforloan")
+    public ResponseEntity<List<Customer>> eligibleCustomersForLoan(){
+        List<Customer> customers= customerList.stream().filter(cust->cust.getCustAccountBalance() > 50000.0).toList();
+
+        return ResponseEntity.ok(customers);
+    }
+
 
 }
