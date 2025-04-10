@@ -36,8 +36,9 @@ public class CustomerController {
     public ResponseEntity<List<Customer>> searchByName(@RequestParam(required = false, defaultValue = "SWARA") String custName) {
         return ResponseEntity.ok(customerList.stream().filter(cust -> cust.getCustName().equals(custName)).toList());
     }
+
     @GetMapping("/sortbycustaccountbal")
-    public ResponseEntity<List<Customer>> sorByAcBalance()
+    public ResponseEntity<List<Customer>> sortByAccBalance()
     {
         return ResponseEntity.ok(customerList.stream().sorted(Comparator.comparingDouble(Customer::getCustAccountBalance).reversed()).toList());
     }
