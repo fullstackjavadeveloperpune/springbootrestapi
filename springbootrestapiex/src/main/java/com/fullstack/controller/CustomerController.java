@@ -1,6 +1,7 @@
 package com.fullstack.controller;
 
 import com.fullstack.model.Customer;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,11 @@ public class CustomerController {
     @GetMapping("/searchbyname")
     public ResponseEntity<List<Customer>> searchByName(@RequestParam(required = false, defaultValue = "SWARA") String custName) {
         return ResponseEntity.ok(customerList.stream().filter(cust -> cust.getCustName().equals(custName)).toList());
+    }
+    @GetMapping("/sortbycustaccountbal")
+    public ResponseEntity<List<Customer>> sorByAcBalance()
+    {
+        return ResponseEntity.ok(customerList.stream().sorted(Comparator.comparingDouble(Customer::getCustAccountBalance).reversed()).toList());
     }
 
 
