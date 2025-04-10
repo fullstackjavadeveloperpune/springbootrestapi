@@ -36,5 +36,10 @@ public class CustomerController {
         return ResponseEntity.ok(customerList.stream().filter(cust -> cust.getCustName().equals(custName)).toList());
     }
 
+    @GetMapping("/sortbyaccountbal")
+    public ResponseEntity<List<Customer>> sortByAccou(@RequestParam(required = false, defaultValue = "SWARA") String custName) {
+        return ResponseEntity.ok(customerList.stream().filter(cust -> cust.getCustName().equals(custName)).toList());
+    }
+
 
 }
